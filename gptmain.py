@@ -20,17 +20,17 @@ class Browser(QMainWindow):
 
         self.add_navbar_buttons()
 
-        self.setWindowTitle("PyQt5 Browser")
+        self.setWindowTitle("Pedro Alvarez")
         self.showMaximized()
 
         self.add_new_tab(QUrl('http://www.google.com'), 'Homepage')
 
     def add_navbar_buttons(self):
-        back_btn = QAction('<-', self)
+        back_btn = QAction('Back', self)
         back_btn.triggered.connect(lambda: self.browser.currentWidget().back())
         self.navbar.addAction(back_btn)
 
-        forward_btn = QAction('->', self)
+        forward_btn = QAction('Forward', self)
         forward_btn.triggered.connect(lambda: self.browser.currentWidget().forward())
         self.navbar.addAction(forward_btn)
 
@@ -46,7 +46,7 @@ class Browser(QMainWindow):
         self.url_bar.returnPressed.connect(self.navigate_to_url)
         self.navbar.addWidget(self.url_bar)
 
-        stop_btn = QAction('X', self)
+        stop_btn = QAction('Stop', self)
         stop_btn.triggered.connect(lambda: self.browser.currentWidget().stop())
         self.navbar.addAction(stop_btn)
 
@@ -63,8 +63,7 @@ class Browser(QMainWindow):
 
     def open_new_tab(self, i):
         if i == -1:
-            self.add_new_tab(QUrl('http://www.google.com'), 'New Tab')
-
+            self.add_new_tab()
 
     def current_tab_changed(self, i):
         qurl = self.browser.currentWidget().url()
@@ -95,10 +94,10 @@ class Browser(QMainWindow):
         if browser != self.browser.currentWidget():
             return
         title = self.browser.currentWidget().page().title()
-        self.setWindowTitle("% s - PyQt5 Browser" % title)
+        self.setWindowTitle("% s - Pedro Alvarez" % title)
 
 
 app = QApplication(sys.argv)
-QApplication.setApplicationName("PyQt5 Browser")
+QApplication.setApplicationName("Pedro Alvarez")
 window = Browser()
 app.exec_()
